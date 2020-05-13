@@ -1,0 +1,108 @@
+@main-color: #2e7bf6;
+@border-color: #dae0ec;
+
+.setFlexPos(@direction; @xPos;@yPos) {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: @direction;
+  justify-content: @xPos;
+  align-items: @yPos;
+}
+
+.border-set(@position, @color, @width: 2px, @radius: 0px) when(@position = bottom) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: @width;
+    transform-origin: 0 0;
+    background-color: @color;
+  }
+}
+
+.border-set(@position, @color, @width: 2px, @radius: 0px) when(@position = top) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 100%;
+    height: @width;
+    transform-origin: 0 0;
+    background-color: @color;
+  }
+}
+
+.border-set(@position, @color, @width: 2px, @radius: 0px) when(@position = left) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 0;
+    width: @width;
+    height: 100%;
+    transform-origin: 0 0;
+    background-color: @color;
+  }
+}
+
+.border-set(@position, @color, @width: 2px, @radius: 0px) when(@position = right) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    right: 1px;
+    top: 0;
+    width: @width;
+    height: 100%;
+    transform-origin: 0 0;
+    background-color: @color;
+  }
+}
+
+.border-set(@position, @color, @width: 2px, @radius: 0px) when(@position = all) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: @width solid @color;
+    border-radius: @radius;
+  }
+}
+
+.setSize(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.setBgImg(@url; @position-horizontal;@position-vertical; @size; @repeat) when(isstring(@url)) {
+  background-image: url(@url);
+  background-position: @position-horizontal @position-vertical;
+  background-size: @size;
+  background-repeat: @repeat;
+}
+
+.setBgImg(@url; @position-horizontal;@position-vertical; @size; @repeat) when not (isstring(@url)) {
+  background-position: @position-horizontal @position-vertical;
+  background-size: @size;
+  background-repeat: @repeat;
+}
+
+.setPosition(@position; @top; @right; @bottom; @left) {
+  position: @position;
+  top: @top;
+  right: @right;
+  bottom: @bottom;
+  left: @left;
+}
