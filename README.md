@@ -1,4 +1,4 @@
-# Web.ST.MKT.Ads.Admin
+# Web.Platform.Admin
 
 ## Project setup
 
